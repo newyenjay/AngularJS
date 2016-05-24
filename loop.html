@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<body>
+
+<!-- Set up an array to loop through -->
+<div ng-app="" ng-init="names=[
+{first:'Jennifer' last: 'Nguyen'},
+{first:'Bruce' last:'Wayne'},
+{first:'Sofia' last:'Vagaras'}]">
+
+
+<p>Looping with objects:</p>
+<ul>
+  <li ng-repeat="x in names">
+  <!--
+  Use ng-repeat to loop through the names.
+  Above, we called ng-init = "names" , so we loop a variable
+  through names
+  -->
+  {{ x.first + ', ' + x.last }}</li>
+</ul>
+
+</div>
+
+</body>
+</html>
