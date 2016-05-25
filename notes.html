@@ -1,6 +1,7 @@
 AngularJS notes
-
+================================================================================
 Directives
+================================================================================
 	* ng-app : defines angularJS application. Need this to start an angular application
 		<html ng-app="store">
 
@@ -51,4 +52,99 @@ Directives
     				 ng-show="myForm.email.$dirty">
     				E-mail is dirty
     		</div>
-		</form>
+			</form>
+
+================================================================================
+Scope
+================================================================================
+	* Scope helps the binding between HTML(view) and JS(controller)
+	* To use, pass the $scope object as an argument
+
+<div ng-app="myApp" ng-controller="myCtrl">
+	<h1>{{carname}}</h1>
+</div>
+
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function($scope) {
+		$scope.carname = "Volvo";
+	});
+</script>
+
+In the JS file, there is $scope.carname, so it grabs the value of carname and can be
+passed as an argument. 	Without scope, file will look like use "this".
+
+<div ng-app="myApp" ng-controller="myCtrl">
+	<h1>{{carname}}</h1>
+</div>
+
+<script>
+	var app = angular.module('myApp', []);
+	app.controller('myCtrl', function() {
+		this.carname = "";
+	});
+</script>
+
+* There are also root scopes, where a variable can be a global varible and manipulated
+as such.
+
+	<!DOCTYPE html>
+	<html>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<body ng-app="myApp">
+
+	<p>The rootScope's favorite color:</p>
+	<h1>{{color}}</h1>
+
+	<div ng-controller="myCtrl">
+
+	<p>The scope of the controller's favorite color:</p>
+	<h1>{{color}}</h1>
+
+	</div>
+
+	<p>The rootScope's favorite color is still:</p>
+	<h1>{{color}}</h1>
+
+	<script>
+	var app = angular.module('myApp', []);
+	app.run(function($rootScope) {
+	    $rootScope.color = 'blue';
+	});
+	app.controller('myCtrl', function($scope) {
+	    $scope.color = "red";
+	});
+	</script>
+
+	<p>Notice that controller's color variable does not overwrite the rootScope's color value.</p>
+
+	</body>
+	</html>
+
+	* The result will be :
+	blue
+	red
+	blue
+
+	Because of the controller "myCtrl", it will show the color = red and then go
+	back to the original scope variable(blue).
+
+================================================================================
+Filters
+================================================================================
+* currency: Format a number to a currency format.
+* date: Format a date to a specified format.
+* filter: Select a subset of items from an array.
+* json: Format an object to a JSON string.
+* limitTo: Limits an array/string, into a specified number of elements/characters.
+* lowercase: Format a string to lower case.
+* number: Format a number to a string.
+* orderBy: Orders an array by an expression.
+* uppercase: Format a string to upper case.
+<div ng-app="myApp" ng-controller="personCtrl">
+	<p>The name is {{ lastName | uppercase }}</p>
+</div>
+
+** Look at filterNames.js and filterNames.html to see how to filter names by letters.
+Very useful to understand
+	- should be stepping stone for grabbing data from a database 

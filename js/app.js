@@ -1,3 +1,7 @@
+/**
+ * Goes with formValidate.html
+ */
+
 // create angular app
 var validationApp = angular.module('validationApp', []);
 
@@ -10,7 +14,7 @@ validationApp.controller('mainController', function($scope) {
 		// check to make sure the form is completely valid
 		if (isValid) {
 			alert('This form works');
-		} 
+		}
 
 	};
 
