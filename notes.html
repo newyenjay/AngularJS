@@ -1,27 +1,54 @@
 AngularJS notes
 
 Directives
-  * ng-app : defines angularJS application. Need this to start an angular application
-    <html ng-app="store">
+	* ng-app : defines angularJS application. Need this to start an angular application
+		<html ng-app="store">
 
-  * ng-init : defines initial variables in an angular application
-    * not good use to use them though, should use a controller instead
-    <body ng-controller="StoreController as store">
-    * give it an alias too, more common to have it that way.
+	* ng-controller : attach a controller function to a page
+		<body ng-controller="StoreConroller as store">
 
-  * ng-model : provides a direct bind to HTML elements
-    * First Name: <input type="text" ng-model="firstName"><br>
-    * Provide type validation for application data (number, email, required).
-    * Provide status for application data (invalid, dirty, touched, error).
-    * Provide CSS classes for HTML elements.
-    * Bind HTML elements to HTML forms.
-    <input type="email" name="myAddress" ng-model="text">
+	* ng-init : defines initial variables in an angular application
+		* not good use to use them though, should use a controller instead
+		<body ng-init="name='Jennifer' ">
+		* give it an alias too, more common to have it that way.
 
-  * ng-repeat: basically a loop.
-    <li ng-repeat = "x in store.product">
-      {{ x.name}}    // html
+	* ng-model : provides a direct bind to HTML elements
+		* First Name: <input type="text" ng-model="firstName"><br>
+		* Provide type validation for application data (number, email, required).
+		* Provide status for application data (invalid, dirty, touched, error).
+		* Provide CSS classes for HTML elements.
+		* Bind HTML elements to HTML forms.
+		<input type="email" name="myAddress" ng-model="text">
 
-    * x in store product ( similar to a foreach loop in java)
-    * the {{ ... }} is what renders on the html page
-    * "x in store.product" : store tells us to look at the controller that has
-                              an alias as store for StoreController
+	* ng-repeat: basically a loop.
+		<li ng-repeat = "x in store.product">
+			{{ x.name}}    // html
+
+		* x in store product ( similar to a foreach loop in java)
+		* the {{ ... }} is what renders on the html page
+		* "x in store.product" : store tells us to look at the controller that has
+															an alias as store for StoreController
+
+	* ng-submit: call function when form is submitted
+
+	* ng-show/ng-hide : display a sectio based on an expression
+	<h1 ng-show = "name"> Hello, {{name}} </h1>
+
+	** Form validations
+			* ng-valid : boolean --> Tells whether an item is currently valid based on the rules you placed
+															example: email validation
+			* ng-invalid : opposite of ng-invalid
+			* ng-pristine : True if the form has not been used yet
+			* ng-dirty: boolean --> form has been used and modified
+
+			<form name="myForm">
+    		<input name="email" ng-model="data.email">
+    		<div class="info"
+    				 ng-show="myForm.email.$pristine">
+    				Email is virgine.
+    		</div>
+    		<div class="error"
+    				 ng-show="myForm.email.$dirty">
+    				E-mail is dirty
+    		</div>
+		</form>
