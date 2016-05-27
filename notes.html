@@ -54,6 +54,12 @@ Directives
     		</div>
 			</form>
 
+	* ng-includes : include separate HTML pages
+	<h3 ng-include=" 'productTitle.html' "></h3>
+		* need to include single quotes as well
+		* however, we should use custom directives, it's better on the service end
+		and doesn't require an AJAX call
+
 ================================================================================
 Scope
 ================================================================================
@@ -147,4 +153,20 @@ Filters
 
 ** Look at filterNames.js and filterNames.html to see how to filter names by letters.
 Very useful to understand
-	- should be stepping stone for grabbing data from a database 
+	- should be stepping stone for grabbing data from a database
+
+================================================================================
+Directives
+================================================================================
+* Directives allow you to write HTML that expresses the behavior of your application
+
+- Template expanding directives
+	*  the simplest ones
+	* define a custom tag or attribute if expanded or replaced
+	* can include controller logic if needed
+
+* directives are useful for expressing complex UI
+	* callign events and registering event handlers
+	* reusing components
+
+* to be continued.
