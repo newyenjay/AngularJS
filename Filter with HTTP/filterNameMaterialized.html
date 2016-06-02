@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Using framework Materialized</title>
+
+    <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+
+    <!-- Angular -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.6/animate.min.css">
+
+</head>
+
+<body ng-app="myApp">
+    <div class="container" ng-controller="mainCtrl">
+        <div class="row">
+            <div class="s12 col">
+                <h3>Filter list by typing in their name or city.</h3>
+                <h5>Click on the avatar for more information</h5>
+                <br>
+                <form class="forms forms-inline input-field ">
+                    <input type="text" class="input-big width-50" id="query" ng-model="query">
+                    <label for="query">Filter</label>
+                </form>
+                <ul class="collection">
+                    <li class="collection-item avatar animated fadeInUp" style="-webkit-animation-duration:{{$index * 300}}ms" ng-repeat="u in users | filter:query | orderBy:'city'">
+                        <a href="" ng-click="modalDetails(u)" class="modal-trigger title">
+                            <img ng-src="{{u.picture.thumbnail}}" alt="" class="circle"> {{u.username}}</a>
+                        <p>{{u.name.first}} {{u.name.last}}</p>
+                        <p>{{u.location.city}}</p>
+                        <a href="#!" class="secondary-content" ng-click="removeUser(u)"><i class="small mdi-action-highlight-remove"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+
+        <div id="modalDetails" class="modal bottom-sheet">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="l2 col">
+                        <img ng-src="{{user.picture.medium}}" alt="" class="align-right circle">
+                    </div>
+                    <div class="l10 col">
+                        <h2>{{user.username}}</h2>
+                        <label>Email</label> {{user.email}}
+                        <br/>
+                        <label>Password</label> {{user.password}}
+                        <hr>
+                        <label>Phone</label> {{user.phone}}
+                        <br/>
+                        <label>Location</label> {{user.location.city}}, {{user.location.state}}
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <script type="text/javascript" src="js/filterNameMaterialized.js"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="angular.min.js"></script>
+
+
+</body>
+
+</html>
